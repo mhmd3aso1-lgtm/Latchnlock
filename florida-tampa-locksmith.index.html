@@ -1,1 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latch N Lock LLC | 24/7 Mobile Locksmith – Tampa Bay</title>
+<meta name="description" content="Latch N Lock LLC provides 24-hour mobile locksmith service across Pinellas, Pasco, and Hillsborough counties. Car, home, and business lockouts, rekeys, and key replacement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ COLOR TOKENS — "Graphite Copper" ============ */
+  :root{
+    --bg:        #17181A;
+    --surface:   #1F2123;
+    --surface-2: #26292C;
+    --text:      #EDEDEA;
+    --text-muted:#A2A6AA;
+    --accent:    #B5652D;   /* copper */
+    --accent-2:  #3E7C7B;   /* teal */
+    --border:    #303336;
+    --on-accent: #17181A;
+    --header-bg: rgba(23,24,26,0.9);
+  }
 
+  /* ============ RESET ============ */
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;margin:0;line-height:1.1;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.03em;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:16px;height:2px;background:var(--accent);display:inline-block;}
+
+  /* ============ KEY-BITTING DIVIDER (signature element) ============ */
+  .bitting{width:100%;height:22px;display:block;}
+  .bitting path{fill:none;stroke:var(--border);stroke-width:2;}
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--header-bg);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:var(--text);}
+  .logo .mark{width:34px;height:34px;flex:none;}
+  .logo .mark path{stroke:var(--accent);}
+  .logo .mark circle{fill:var(--accent);}
+  .logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--text-muted);font-weight:500;text-transform:uppercase;}
+  .logo .llc-tag{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15px;color:var(--accent);margin-left:2px;align-self:flex-start;}
+
+  nav.links{display:flex;gap:32px;align-items:center;}
+  nav.links a{font-size:14.5px;color:var(--text-muted);transition:color .15s;}
+  nav.links a:hover{color:var(--text);}
+
+  .header-cta{display:flex;align-items:center;gap:18px;}
+  .phone-link{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:var(--text);}
+  .phone-link svg{width:16px;height:16px;stroke:var(--accent);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:3px;
+    font-size:14px;font-weight:600;white-space:nowrap;transition:transform .15s, background .15s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent);color:var(--on-accent);}
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--border);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);}
+
+  .menu-toggle{display:none;}
+  .burger{display:none;}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;padding:96px 0 72px;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(600px 400px at 82% -10%, rgba(192,138,62,0.16), transparent 60%),
+      radial-gradient(500px 350px at -5% 60%, rgba(76,107,138,0.14), transparent 60%);
+  }
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(34px,4.6vw,54px);font-weight:700;margin-bottom:20px;}
+  .hero h1 em{font-style:normal;color:var(--accent);}
+  .hero p.lead{font-size:17.5px;color:var(--text-muted);max-width:520px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
+  .btn-lg{padding:15px 26px;font-size:15.5px;}
+
+  .hero-stats{display:flex;gap:0;border-top:1px solid var(--border);padding-top:24px;}
+  .hero-stats div{flex:1;padding-right:20px;}
+  .hero-stats strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:24px;color:var(--accent);}
+  .hero-stats span{font-size:12.5px;color:var(--text-muted);}
+
+  /* hero visual: stylized lock illustration */
+  .hero-visual{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+  .hero-visual svg{width:100%;height:100%;}
+  .badge-24{
+    position:absolute;top:8%;right:4%;background:var(--surface);border:1px solid var(--border);
+    border-radius:100px;padding:9px 16px;display:flex;align-items:center;gap:8px;font-size:12.5px;
+    font-family:'IBM Plex Mono',monospace;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.35);
+  }
+  .badge-24 .dot{width:7px;height:7px;border-radius:50%;background:#7FBF6B;box-shadow:0 0 0 4px rgba(127,191,107,0.18);}
+
+  /* ============ SECTION GENERIC ============ */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head h2{font-size:clamp(26px,3vw,36px);margin-bottom:14px;}
+  .section-head p{color:var(--text-muted);font-size:15.5px;}
+  .section-tight .section-head{margin-bottom:36px;}
+
+  /* ============ TRUST BAR ============ */
+  .trust{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0;}
+  .trust-row{display:grid;grid-template-columns:repeat(4,1fr);}
+  .trust-item{padding:28px 24px;border-right:1px solid var(--border);display:flex;gap:14px;align-items:flex-start;}
+  .trust-item:last-child{border-right:none;}
+  .trust-item svg{width:22px;height:22px;stroke:var(--accent);flex:none;margin-top:2px;}
+  .trust-item h4{font-size:14.5px;margin-bottom:4px;}
+  .trust-item p{font-size:12.8px;color:var(--text-muted);}
+
+  /* ============ SERVICES ============ */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .service-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:28px 24px;
+    transition:border-color .15s, transform .15s;
+  }
+  .service-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .service-card .icon-box{width:44px;height:44px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+  .service-card .icon-box svg{width:22px;height:22px;stroke:var(--accent);}
+  .service-card h3{font-size:17px;margin-bottom:10px;}
+  .service-card p.desc{font-size:13.8px;color:var(--text-muted);margin-bottom:16px;}
+  .service-card ul{display:flex;flex-direction:column;gap:7px;}
+  .service-card li{font-size:13.2px;color:var(--text-muted);display:flex;gap:8px;align-items:flex-start;}
+  .service-card li::before{content:"";width:5px;height:5px;border-radius:1px;background:var(--accent);margin-top:6px;flex:none;}
+
+  /* ============ PROCESS ============ */
+  .process{background:var(--surface);}
+  .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+  .process-step{padding:0 32px 0 0;position:relative;}
+  .process-step:not(:last-child)::after{
+    content:"";position:absolute;top:20px;right:0;width:1px;height:calc(100% - 40px);background:var(--border);
+  }
+  .step-num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:16px;}
+  .process-step h3{font-size:18px;margin-bottom:10px;}
+  .process-step p{font-size:14px;color:var(--text-muted);}
+
+  /* ============ AREAS ============ */
+  .areas-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:start;}
+  .county-block{margin-bottom:26px;}
+  .county-block h4{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;}
+  .city-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .city-list li{
+    font-size:13.5px;padding:8px 14px;border:1px solid var(--border);border-radius:100px;color:var(--text-muted);
+  }
+  .areas-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px;}
+  .areas-note h3{font-size:19px;margin-bottom:14px;}
+  .areas-note p{color:var(--text-muted);font-size:14.5px;margin-bottom:20px;}
+
+  /* ============ FAQ ============ */
+  .faq-list{max-width:800px;}
+  details{border-bottom:1px solid var(--border);padding:22px 0;}
+  details summary{
+    cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;
+    font-family:'Space Grotesk',sans-serif;font-size:16.5px;font-weight:600;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:"+";font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:20px;font-weight:600;transition:transform .2s;}
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{color:var(--text-muted);font-size:14.5px;margin-top:14px;max-width:640px;}
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .testimonial-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:26px;}
+  .stars{color:var(--accent);font-size:14px;margin-bottom:14px;letter-spacing:2px;}
+  .testimonial-card p.quote{font-size:14px;color:var(--text-muted);margin-bottom:18px;}
+  .testimonial-card .who{font-size:13px;font-weight:600;font-family:'Space Grotesk',sans-serif;}
+  .testimonial-card .role{font-size:12px;color:var(--text-muted);}
+  .placeholder-note{font-size:12px;color:var(--text-muted);font-style:italic;margin-top:20px;}
+
+  /* ============ CTA BAND ============ */
+  .cta-band{
+    background:linear-gradient(120deg, var(--surface-2), var(--surface));
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:64px 0;text-align:center;
+  }
+  .cta-band h2{font-size:clamp(24px,3vw,34px);margin-bottom:16px;}
+  .cta-band p{color:var(--text-muted);margin-bottom:28px;}
+  .cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+
+  /* ============ FOOTER ============ */
+  footer{padding:64px 0 32px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .footer-brand p{color:var(--text-muted);font-size:13.8px;margin-top:16px;max-width:280px;}
+  .footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;}
+  .footer-col ul{display:flex;flex-direction:column;gap:11px;}
+  .footer-col a, .footer-col li{font-size:13.8px;color:var(--text-muted);}
+  .footer-col a:hover{color:var(--accent);}
+  .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-muted);flex-wrap:wrap;gap:10px;}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:940px){
+    nav.links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{max-width:340px;margin:0 auto;}
+    .trust-row{grid-template-columns:repeat(2,1fr);}
+    .trust-item{border-bottom:1px solid var(--border);}
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:1fr;gap:32px;}
+    .process-step:not(:last-child)::after{display:none;}
+    .areas-layout{grid-template-columns:1fr;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .services-grid{grid-template-columns:1fr;}
+    .hero-stats{flex-wrap:wrap;gap:20px;}
+    .hero-stats div{flex:1 1 40%;padding-right:0;}
+    .footer-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+    .hero{padding:56px 0 48px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a href="#top" class="logo">
+      <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1.5" y="10.5" width="21" height="20" rx="3" stroke-width="2" stroke="var(--text-muted)"/>
+        <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" stroke-width="2" stroke="var(--text-muted)"/>
+        <circle cx="12" cy="19" r="2.3"/>
+        <path d="M25 15h7M25 19h7M25 23h4" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Latch N Lock <span class="llc-tag">LLC</span><small>Mobile Locksmith</small></span>
+    </a>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#areas">Service Areas</a>
+      <a href="#process">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:6193763124" class="phone-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+        619-376-3124
+      </a>
+      <a href="tel:6193763124" class="btn btn-primary">Get Help Now</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Open 24 Hours &middot; Pinellas &middot; Pasco &middot; Hillsborough</div>
+        <h1>Locked out?<br><em>We're already on our way.</em></h1>
+        <p class="lead">Latch N Lock LLC is a mobile locksmith crew serving the greater Tampa Bay area — cars, homes, and businesses, any hour of the day or night.</p>
+        <div class="hero-actions">
+          <a href="tel:6193763124" class="btn btn-primary btn-lg">Call 619-376-3124</a>
+          <a href="#services" class="btn btn-ghost btn-lg">View Services</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>24/7</strong><span>Dispatch &amp; on-call service</span></div>
+          <div><strong>3</strong><span>Counties covered daily</span></div>
+          <div><strong>100%</strong><span>Mobile — we come to you</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="badge-24"><span class="dot"></span> Available now</div>
+        <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="60" y="120" width="200" height="170" rx="14" fill="var(--surface)" stroke="var(--border)" stroke-width="2"/>
+          <path d="M100 120V85a60 60 0 0 1 120 0v35" stroke="var(--accent-2)" stroke-width="10" fill="none"/>
+          <circle cx="160" cy="195" r="20" fill="var(--accent)"/>
+          <rect x="153" y="205" width="14" height="34" rx="6" fill="var(--accent)"/>
+          <g opacity="0.5">
+            <path d="M260 150h34M260 165h24M260 180h30" stroke="var(--border)" stroke-width="6" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust">
+    <div class="wrap trust-row">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div><h4>Fast Response</h4><p>Mobile units dispatched to your location, day or night.</p></div>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+        <div><h4>Licensed &amp; Insured</h4><p>Background-checked technicians you can trust.</p></div>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+        <div><h4>Upfront Pricing</h4><p>You'll know the cost before any work begins.</p></div>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <div><h4>Local &amp; Family-Run</h4><p>Based in Tampa Bay, serving our own neighbors.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What We Do</div>
+        <h2>Locksmith services built for the moment you need them</h2>
+        <p>From a locked car door to a full commercial rekey, our vans carry the tools and parts to solve most jobs in a single visit.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 10h-1V6a5 5 0 0 0-10 0v4H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg></div>
+          <h3>Automotive</h3>
+          <p class="desc">On-site help for cars, trucks, and SUVs of every make.</p>
+          <ul>
+            <li>Car lockout entry</li>
+            <li>Key cutting &amp; replacement</li>
+            <li>Transponder &amp; fob programming</li>
+            <li>Ignition repair</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 21v-6h4v6"/></svg></div>
+          <h3>Residential</h3>
+          <p class="desc">Keep your home secure and easy to get back into.</p>
+          <ul>
+            <li>House lockout entry</li>
+            <li>Rekeying existing locks</li>
+            <li>Lock &amp; deadbolt installation</li>
+            <li>Smart lock setup</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4h6v4M9 8h1M14 8h1M9 12h1M14 12h1"/></svg></div>
+          <h3>Commercial</h3>
+          <p class="desc">Security solutions sized for your property or portfolio.</p>
+          <ul>
+            <li>Office &amp; storefront lockouts</li>
+            <li>Master key systems</li>
+            <li>High-security hardware</li>
+            <li>Panic bar installation</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l1.5 4.5H18l-3.7 2.7 1.4 4.5-3.7-2.7-3.7 2.7 1.4-4.5L6 6.5h4.5z"/><path d="M5 22l14-14"/></svg></div>
+          <h3>Emergency</h3>
+          <p class="desc">Round-the-clock response when something can't wait.</p>
+          <ul>
+            <li>24/7 lockout response</li>
+            <li>Broken key extraction</li>
+            <li>On-the-spot lock repair</li>
+            <li>Urgent rekey service</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <svg class="bitting" viewBox="0 0 1180 22" preserveAspectRatio="none"><path d="M0 11 H80 V4 H110 V18 H150 V2 H190 V20 H230 V8 H270 V14 H310 V4 H350 V18 H390 V10 H1180"/></svg>
+
+  <!-- PROCESS -->
+  <section id="process" class="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How It Works</div>
+        <h2>Three steps back to inside</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num mono">01</div>
+          <h3>Call or request service</h3>
+          <p>Reach us anytime at 619-376-3124 and tell us where you are and what's going on.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num mono">02</div>
+          <h3>A technician heads out</h3>
+          <p>We dispatch a fully-equipped mobile unit straight to your location, no shop visit needed.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num mono">03</div>
+          <h3>Problem solved on-site</h3>
+          <p>Lockouts, rekeys, and key replacement handled right where you're standing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREAS -->
+  <section id="areas">
+    <div class="wrap areas-layout">
+      <div>
+        <div class="eyebrow">Where We Work</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);margin-bottom:24px;">Covering Pinellas, Pasco &amp; Hillsborough</h2>
+
+        <div class="county-block">
+          <h4 class="mono">Pinellas County</h4>
+          <ul class="city-list">
+            <li>Clearwater</li><li>St. Petersburg</li><li>Largo</li><li>Pinellas Park</li><li>Palm Harbor</li>
+          </ul>
+        </div>
+        <div class="county-block">
+          <h4 class="mono">Pasco County</h4>
+          <ul class="city-list">
+            <li>Wesley Chapel</li><li>New Port Richey</li><li>Land O' Lakes</li><li>Zephyrhills</li>
+          </ul>
+        </div>
+        <div class="county-block">
+          <h4 class="mono">Hillsborough County</h4>
+          <ul class="city-list">
+            <li>Tampa</li><li>Brandon</li><li>Riverview</li><li>Plant City</li><li>Lutz</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="areas-note">
+        <h3>Don't see your town listed?</h3>
+        <p>We regularly cover surrounding areas across all three counties. Call and we'll let you know how quickly we can reach you.</p>
+        <a href="tel:6193763124" class="btn btn-primary">Call 619-376-3124</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="wrap">
+      <h2>Locked out right now?</h2>
+      <p>Our line is open 24 hours a day, every day of the year.</p>
+      <div class="cta-actions">
+        <a href="tel:6193763124" class="btn btn-primary btn-lg">Call 619-376-3124</a>
+        <a href="#contact" class="btn btn-ghost btn-lg">Request a Callback</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section id="faq" class="section-tight">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Questions</div>
+        <h2>Got questions? We've got answers</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>How fast can you get to me?</summary>
+          <p>In most parts of Pinellas, Pasco, and Hillsborough counties, a technician can reach you quickly — call and we'll give you an estimated arrival time up front.</p>
+        </details>
+        <details>
+          <summary>How much does a service call cost?</summary>
+          <p>Pricing depends on the job — a simple lockout costs less than a full rekey or key programming. We'll quote you a price on the phone before dispatching.</p>
+        </details>
+        <details>
+          <summary>Can you make a new car key if I've lost every copy?</summary>
+          <p>Yes. We can cut and program a new key or fob on-site for most makes and models, even without the original key present.</p>
+        </details>
+        <details>
+          <summary>Do you charge more at night or on weekends?</summary>
+          <p>We aim to keep pricing consistent around the clock. Ask about current rates when you call — we're transparent about cost before we start.</p>
+        </details>
+        <details>
+          <summary>Do you work on smart locks and push-to-start vehicles?</summary>
+          <p>Yes, our technicians are equipped to handle modern smart locks and push-to-start key systems in addition to traditional locks and keys.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Reviews</div>
+        <h2>What customers say</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Placeholder review — replace with a real customer quote once you start collecting reviews."</p>
+          <div class="who">Customer Name</div>
+          <div class="role">Verified Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Placeholder review — replace with a real customer quote once you start collecting reviews."</p>
+          <div class="who">Customer Name</div>
+          <div class="role">Verified Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Placeholder review — replace with a real customer quote once you start collecting reviews."</p>
+          <div class="who">Customer Name</div>
+          <div class="role">Verified Customer</div>
+        </div>
+      </div>
+      <p class="placeholder-note">Note: these testimonials are placeholders. Swap in real Google reviews once you have them.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1.5" y="10.5" width="21" height="20" rx="3" stroke-width="2" stroke="var(--text-muted)"/>
+            <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" stroke-width="2" stroke="var(--text-muted)"/>
+            <circle cx="12" cy="19" r="2.3"/>
+          </svg>
+          <span>Latch N Lock <span class="llc-tag">LLC</span></span>
+        </div>
+        <p>24-hour mobile locksmith service for cars, homes, and businesses across Pinellas, Pasco, and Hillsborough counties.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#areas">Service Areas</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li>Automotive Locksmith</li>
+          <li>Residential Locksmith</li>
+          <li>Commercial Locksmith</li>
+          <li>Emergency Lockout</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:6193763124">619-376-3124</a></li>
+          <li><a href="mailto:info@latchnlockllc.com">info@latchnlockllc.com</a></li>
+          <li>Open 24 Hours</li>
+          <li>Pinellas &middot; Pasco &middot; Hillsborough, FL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Latch N Lock LLC. All rights reserved.</span>
+      <span>latchnlockllc.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
